@@ -312,6 +312,10 @@ export function prepareBuiltInCopilotRipgrepShim(platform: string, arch: string,
 	const copilotPackagePlatformArch = toCopilotPackagePlatformArch(platform, arch);
 	const tgrepPlatformArch = toCopilotTgrepPlatformArch(platform, arch);
 
+	// The copilot extension is not part of this build; nothing to shim.
+	if (!fs.existsSync(builtInCopilotExtensionDir)) {
+		return;
+	}
 	const extensionNodeModules = path.join(builtInCopilotExtensionDir, 'node_modules');
 	const copilotBase = path.join(extensionNodeModules, '@github', 'copilot');
 	const copilotSdkBase = path.join(copilotBase, 'sdk');
