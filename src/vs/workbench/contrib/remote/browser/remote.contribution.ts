@@ -9,7 +9,8 @@ import { ShowCandidateContribution } from './showCandidate.js';
 import { LifecyclePhase } from '../../../services/lifecycle/common/lifecycle.js';
 import { TunnelFactoryContribution } from './tunnelFactory.js';
 import { RemoteAgentConnectionStatusListener, RemoteMarkers } from './remote.js';
-import { RemoteStatusIndicator } from './remoteIndicator.js';
+// lean fork: RemoteStatusIndicator (the "Open a Remote Window" status bar
+// item and its menu) is not registered.
 import { AutomaticPortForwarding, ForwardedPortsView, PortRestore } from './remoteExplorer.js';
 import { InitialRemoteConnectionHealthContribution } from './remoteConnectionHealth.js';
 
@@ -17,7 +18,6 @@ const workbenchContributionsRegistry = Registry.as<IWorkbenchContributionsRegist
 registerWorkbenchContribution2(ShowCandidateContribution.ID, ShowCandidateContribution, WorkbenchPhase.BlockRestore);
 registerWorkbenchContribution2(TunnelFactoryContribution.ID, TunnelFactoryContribution, WorkbenchPhase.BlockRestore);
 workbenchContributionsRegistry.registerWorkbenchContribution(RemoteAgentConnectionStatusListener, LifecyclePhase.Eventually);
-registerWorkbenchContribution2(RemoteStatusIndicator.ID, RemoteStatusIndicator, WorkbenchPhase.BlockStartup);
 workbenchContributionsRegistry.registerWorkbenchContribution(ForwardedPortsView, LifecyclePhase.Restored);
 workbenchContributionsRegistry.registerWorkbenchContribution(PortRestore, LifecyclePhase.Eventually);
 workbenchContributionsRegistry.registerWorkbenchContribution(AutomaticPortForwarding, LifecyclePhase.Eventually);
