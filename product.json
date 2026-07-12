@@ -1,4 +1,16 @@
 {
+	"extensionsGallery": {
+		"serviceUrl": "https://open-vsx.org/vscode/gallery",
+		"itemUrl": "https://open-vsx.org/vscode/item",
+		"resourceUrlTemplate": "https://open-vsx.org/vscode/unpkg/{publisher}/{name}/{version}/{path}"
+	},
+	"linkProtectionTrustedDomains": ["https://open-vsx.org"],
+	"configurationDefaults": {
+		"chat.disableAIFeatures": true,
+		"telemetry.telemetryLevel": "off",
+		"workbench.enableExperiments": false,
+		"update.mode": "none"
+	},
 	"nameShort": "Code - OSS",
 	"nameLong": "Code - OSS",
 	"applicationName": "code-oss",
