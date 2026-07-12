@@ -53,6 +53,11 @@ if (args['sandbox'] &&
 	app.commandLine.appendSwitch('disable-gpu-sandbox');
 }
 
+// Run the GPU service inside the main process instead of a dedicated
+// helper process. Saves one process (~60-70MB); a GPU crash takes the
+// app down instead of just the helper.
+app.commandLine.appendSwitch('in-process-gpu');
+
 // Set userData path before app 'ready' event
 const userDataPath = getUserDataPath(args, product.nameShort ?? 'code-oss-dev');
 if (process.platform === 'win32') {

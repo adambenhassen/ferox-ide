@@ -61,7 +61,11 @@ export class AgentHostEnablementService extends Disposable implements IAgentHost
 		@IContextKeyService contextKeyService: IContextKeyService,
 	) {
 		super();
-		this.enabled = !isWeb && (configurationService.getValue<boolean>(agentHostEnabledSettingId) ?? false);
+		// `chat.disableAIFeatures` must win over `chat.agentHost.enabled`:
+		// without this, the agent host utility process and its copilot CLI
+		// child are spawned even when all AI features are disabled.
+		const aiDisabled = configurationService.getValue<boolean>('chat.disableAIFeatures') === true;
+		this.enabled = !isWeb && !aiDisabled && (configurationService.getValue<boolean>(agentHostEnabledSettingId) ?? false);
 		AGENT_HOST_ENABLED_CONTEXT_KEY.bindTo(contextKeyService).set(this.enabled);
 	}
 }

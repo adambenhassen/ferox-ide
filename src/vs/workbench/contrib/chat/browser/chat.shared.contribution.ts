@@ -1852,7 +1852,8 @@ configurationRegistry.registerConfiguration({
 		[ChatConfiguration.AIDisabled]: {
 			type: 'boolean',
 			description: nls.localize('chat.disableAIFeatures', "Disable and hide built-in AI features provided by GitHub Copilot, including chat and inline suggestions."),
-			default: false,
+			// lean fork: AI features off by default
+			default: true,
 			scope: ConfigurationScope.WINDOW,
 		},
 		[ChatConfiguration.TitleBarSignInEnabled]: {
